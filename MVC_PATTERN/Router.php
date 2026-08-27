@@ -5,9 +5,9 @@ class Router
   static function path($reqM, $uri, $handler)
   {
     $uri = preg_replace("#\{(.*?)\}#", "([^\/]+)", $uri);
-    self::$router[] = [$reqM, $uri, $handler];
+    self::$router[] = [$reqM, "#^$uri$#", $handler];
   }
-  static function requestHandler()
+  static function reqHandler()
   {
     $REQUEST_METHOD = $_SERVER['REQUEST_METHOD'];
     $REQUEST_URI = $_SERVER['REQUEST_URI'];
@@ -22,11 +22,11 @@ class Router
     move('/');
   }
 }
-function get($uri, $mathces)
+function get($uri, $handler = "")
 {
-  Router::path("GET", $uri, $mathces);
+  Router::path("GET", $uri, $handler);
 }
-function post($uri, $mathces)
+function post($uri, $handler = "")
 {
-  Router::path("POST", $uri, $mathces);
+  Router::path("POST", $uri, $handler);
 }
