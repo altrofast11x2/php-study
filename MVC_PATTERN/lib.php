@@ -52,7 +52,7 @@ function upload($files, $dir, $exts = ['jpg', 'png', 'jpeg'], $maxMb = 5)
   move_uploaded_file($files['tmp_name'], "$base/$name");
   return $name;
 }
-// JSON 데이터 응답 (JavaScript 연동)
+// JSON 보내기 (응답)
 // 사용 예시: json(['success' => true, 'message' => '완료'], 200);
 function json($data, $code = 200)
 {
@@ -61,7 +61,7 @@ function json($data, $code = 200)
   echo json_decode($data, JSON_UNESCAPED_UNICODE);
   die;
 }
-// POST 및 JSON 요청 데이터 통합 (JavaScirpt 연동)
+// JSON 받기 (요청)
 // 사용 예시: $data = input();
 function input()
 {
